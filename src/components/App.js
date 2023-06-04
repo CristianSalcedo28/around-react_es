@@ -20,28 +20,27 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
 
   // useEffect(() => {
-    // Api
-      // .getUserInfo()
-      // .then((res) => {
-        // setcurrentUser(res);
-      // })
-      // .catch((err) => console.log(err));
-  // }, []);
-  
-  // useEffect(() => {
-    // Api
-      // .getInitialCards()
-      // .then((res) => {
-        // setCards(res);
-      // })
-      // .catch((err) => console.log(err));
+  // Api
+  // .getUserInfo()
+  // .then((res) => {
+  // setcurrentUser(res);
+  // })
+  // .catch((err) => console.log(err));
   // }, []);
 
+  // useEffect(() => {
+  // Api
+  // .getInitialCards()
+  // .then((res) => {
+  // setCards(res);
+  // })
+  // .catch((err) => console.log(err));
+  // }, []);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
-  
+
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
@@ -79,23 +78,27 @@ function App() {
         title="New Place"
         name=""
         onClose={handleClosePopup}
+        submitText="Create"
         isOpen={isAddPlacePopupOpen ? "true" : ""}
       ></AddPlacePopup>
       <EditAvatarPopup
         title="Change Image"
         name=""
         onsClose={handleClosePopup}
+        submitText="Save"
         isOpen={isEditAvatarPopupOpen ? "true" : ""}
       />
       <EditProfilePopup
         title="Edit Profile"
         name=""
         onClose={handleClosePopup}
+        submitText="Save"
         isOpen={isEditProfilePopupOpen ? "true" : ""}
       />
       <ImagePopup
         selectedCard={selectedCard}
         onClose={handleClosePopup}
+        submitText="Yes"
         isOpen={isImagePopupOpen ? "true" : ""}
       />
     </CurrentUserContext.Provider>

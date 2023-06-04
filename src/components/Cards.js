@@ -2,27 +2,27 @@ import React from "react";
 
 function Cards(props) {
   return props.cards.map((card) => (
-
-    <article className="card">
-      <section className="card__photo">
-        <button className="button-delete"></button>
-        <img
+  
+    <template className="template__card">
+      <div className="cards__item">
+        <img 
           onClick={() => props.onCardClick(card)}
           src={card.link}
           alt=""
-          className="card__image"
-          data-target="#photoPopUp"
+          className="cards__image"
         />
-      </section>
-      <section className="card__name">
-        <h3 className="card__title">{card.name}</h3>
-        <section className="card__like">
-          <button className="button-like"></button>
-          <span className="count-likes">{card.likes.length}</span>
-        </section>
-      </section>
-    </article>
-  ))
+        <button type="button" className="button-trash"></button>
+        <div className="cards__text">
+            <h4 className="cards__name">{card.name}</h4>
+            <div className="cards__like">
+              <button type="button" className="button-like"></button>
+              <span className="likes__counter">{card.likes.length}</span>
+            </div>
+        </div>
+      </div>
+  </template>
+
+))
 }
 
 export default Cards;
