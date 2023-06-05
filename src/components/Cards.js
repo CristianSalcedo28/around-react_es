@@ -1,10 +1,13 @@
 import React from "react";
 
 function Cards(props) {
+  // function handleCardClick (){
+  //   props.onCardClick(props)
+  // }
   return (
       <div className="cards__item">
         <img 
-          // onClick={() => props.onCardClick(props)}
+          onClick={props.onCardClick}
           src={props.link}
           alt=""
           className="cards__image"

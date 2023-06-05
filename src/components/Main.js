@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ImagePopup from "./ImagePopup";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import PopupWithForm from "./PopupWithForm";
+//import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Card from "./Cards";
 import api from "../utils/Api.js";
-//import "../index.css";
+import "../index.css";
 
 
 function Main(props) {
@@ -61,14 +62,14 @@ function Main(props) {
 							name={card.name}
 							link={card.link}
                             likes={card.likes.length}
-                            cards={props.cards}
-                            handleCardClick={props.onCardClick} 
+                            onCardClick={props.onCardClick}
+                            // cards={props.cards}
+                            // handleCardClick={props.onCardClick} 
                     />
                     );
 				})}
             </section>
-            {/* <ImagePopup>
-            <ImagePopup/> */}
+            
         </main>
     );
 };

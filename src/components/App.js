@@ -58,8 +58,8 @@ function App() {
     //   setSelectedCard({});
     // }, 500);
   }
-  function handleCardClick(Card) {
-    setSelectedCard(Card);
+  function handleCardClick(card) {
+    setSelectedCard(card);
     setIsImagePopupOpen(true);
   }
 
@@ -71,6 +71,7 @@ function App() {
         onAddPlaceClick={handleAddPlaceClick}
         onEditAvatarClick={handleEditAvatarClick}
         cards={cards}
+        isImagePopupOpen={isImagePopupOpen}
         onCardClick={handleCardClick}
       />
       <Footer />
@@ -96,7 +97,6 @@ function App() {
         isOpen={isEditProfilePopupOpen ? "true" : ""}
       />
       <ImagePopup
-        submitText="Yes"
         selectedCard={selectedCard}
         onClose={handleClosePopup}
         isOpen={isImagePopupOpen ? "true" : ""}
