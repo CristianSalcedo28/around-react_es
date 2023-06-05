@@ -7,7 +7,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
-import Api from "../utils/Api.js";
+import api from "../utils/Api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
@@ -54,9 +54,9 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsImagePopupOpen(false);
-    setTimeout(() => {
-      setSelectedCard({});
-    }, 500);
+    // setTimeout(() => {
+    //   setSelectedCard({});
+    // }, 500);
   }
   function handleCardClick(Card) {
     setSelectedCard(Card);
@@ -76,29 +76,29 @@ function App() {
       <Footer />
       <AddPlacePopup
         title="New Place"
+        submitText="Create"
         name=""
         onClose={handleClosePopup}
-        submitText="Create"
         isOpen={isAddPlacePopupOpen ? "true" : ""}
       ></AddPlacePopup>
       <EditAvatarPopup
         title="Change Image"
-        name=""
-        onsClose={handleClosePopup}
         submitText="Save"
+        name=""
+        onClose={handleClosePopup}
         isOpen={isEditAvatarPopupOpen ? "true" : ""}
       />
       <EditProfilePopup
         title="Edit Profile"
+        submitText="Save"
         name=""
         onClose={handleClosePopup}
-        submitText="Save"
         isOpen={isEditProfilePopupOpen ? "true" : ""}
       />
       <ImagePopup
+        submitText="Yes"
         selectedCard={selectedCard}
         onClose={handleClosePopup}
-        submitText="Yes"
         isOpen={isImagePopupOpen ? "true" : ""}
       />
     </CurrentUserContext.Provider>

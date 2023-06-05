@@ -6,6 +6,7 @@ function AddPlacePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       title={props.title}
+      submitText="Create"
     >
          <input 
             type="text"

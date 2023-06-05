@@ -70,4 +70,4 @@ class Api {
     },
   });
 
-  export default Api;
+  export default api;

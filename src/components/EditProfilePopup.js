@@ -6,6 +6,7 @@ function EditProfilePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       title={props.title}
+      submitText="Save"
     >
     <input
             type="text"
