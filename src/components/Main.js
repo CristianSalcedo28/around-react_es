@@ -31,46 +31,48 @@ function Main(props) {
 
    // const currentUser = React.useContext(CurrentUserContext);
     return (
-        <main className="content">
-            <section className="profile">
-              <div className="profile__avatar">
-                <img
-                alt="Foto del Usuario"
-                style={{ backgroundImage: `url(${userAvatar})` }}
-                className="profile__avatar-btn"
-                />
-                <div className="profile__avatar-edit"
-                    onClick={props.onEditAvatarClick}>
-                </div>
-              </div>
-                <div className="profile__info">
-                    <p className="profile__name">{userName}</p>
-                    <p className="profile__profession">{userDescription}</p>
-                </div>
-                    <button type="button" className="button-edit"
-                            onClick={props.onEditProfileClick}> 
-                    </button>
-                <button type="button" className="button-add"
-                        onClick={props.onAddPlaceClick}>
-                </button>
-            </section>
-            <section className="cards">
-                {cards.map((card) => {
-                    return (
-                        <Card
-                            key={card._id}
-							name={card.name}
-							link={card.link}
-                            likes={card.likes.length}
-                            onCardClick={props.onCardClick}
-                            // cards={props.cards}
-                            // handleCardClick={props.onCardClick} 
+        <div class="page">
+            <main className="content">
+                <section className="profile">
+                <div className="profile__avatar">
+                    <img
+                    alt="Foto del Usuario"
+                    style={{ backgroundImage: `url(${userAvatar})` }}
+                    className="profile__avatar-btn"
                     />
-                    );
-				})}
-            </section>
-            
-        </main>
+                    <div className="profile__avatar-edit"
+                        onClick={props.onEditAvatarClick}>
+                    </div>
+                </div>
+                    <div className="profile__info">
+                        <p className="profile__name">{userName}</p>
+                        <p className="profile__profession">{userDescription}</p>
+                    </div>
+                        <button type="button" className="button-edit"
+                                onClick={props.onEditProfileClick}> 
+                        </button>
+                    <button type="button" className="button-add"
+                            onClick={props.onAddPlaceClick}>
+                    </button>
+                </section>
+                <section className="cards">
+                    {cards.map((card) => {
+                        return (
+                            <Card
+                                key={card._id}
+                                name={card.name}
+                                link={card.link}
+                                likes={card.likes.length}
+                                onCardClick={props.onCardClick}
+                                // cards={props.cards}
+                                // handleCardClick={props.onCardClick} 
+                        />
+                        );
+                    })}
+                </section>
+                
+            </main>
+        </div>
     );
 };
 export default Main;

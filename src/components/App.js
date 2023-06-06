@@ -8,7 +8,7 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/Api.js";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
+//import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -16,7 +16,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [currentUser, setcurrentUser] = useState({});
-  const [cards, setCards] = useState([]);
+//  const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
 
   // useEffect(() => {
@@ -64,13 +64,13 @@ function App() {
   }
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <>
       <Header />
       <Main
         onEditProfileClick={handleEditProfileClick}
         onAddPlaceClick={handleAddPlaceClick}
         onEditAvatarClick={handleEditAvatarClick}
-        cards={cards}
+//        cards={cards}
         isImagePopupOpen={isImagePopupOpen}
         onCardClick={handleCardClick}
       />
@@ -101,7 +101,7 @@ function App() {
         onClose={handleClosePopup}
         isOpen={isImagePopupOpen ? "true" : ""}
       />
-    </CurrentUserContext.Provider>
+    </>
   );
 }
 
