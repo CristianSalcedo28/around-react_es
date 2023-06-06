@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
-//import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Card from "./Cards";
 import api from "../utils/Api.js";
 import "../index.css";
@@ -32,10 +31,6 @@ function Main(props) {
         });
     }, []);
 
-    useEffect(() =>{
-        console.log(userAvatar)
-    },[userAvatar]);
-
     function handleImagePopup(selectedCard) {
         console.log(selectedCard)
         setSelectedCard(selectedCard)
@@ -50,8 +45,6 @@ function Main(props) {
         }
     }
 
-
-   // const currentUser = React.useContext(CurrentUserContext);
     return (
       <div className="page">
         <main className="content">
@@ -90,8 +83,6 @@ function Main(props) {
                   name={card.name}
                   link={card.link}
                   likes={card.likes.length}
-                  // onCardClick={props.onCardClick}
-                  // cards={props.cards}
                   handleCardClick={handleImagePopup}
                 />
               );

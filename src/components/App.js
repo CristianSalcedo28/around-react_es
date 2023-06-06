@@ -6,36 +6,12 @@ import Footer from "./Footer";
 import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
-import ImagePopup from "./ImagePopup";
-import api from "../utils/Api.js";
-//import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-  const [currentUser, setcurrentUser] = useState({});
-//  const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState({});
-
-  // useEffect(() => {
-  // Api
-  // .getUserInfo()
-  // .then((res) => {
-  // setcurrentUser(res);
-  // })
-  // .catch((err) => console.log(err));
-  // }, []);
-
-  // useEffect(() => {
-  // Api
-  // .getInitialCards()
-  // .then((res) => {
-  // setCards(res);
-  // })
-  // .catch((err) => console.log(err));
-  // }, []);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -54,15 +30,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsImagePopupOpen(false);
-    // setTimeout(() => {
-    //   setSelectedCard({});
-    // }, 500);
   }
-  // function handleCardClick(card) {
-  //   console.log(card)
-  //   setSelectedCard(card);
-  //   setIsImagePopupOpen(true);
-  // }
 
   return (
     <>
@@ -71,9 +39,7 @@ function App() {
         onEditProfileClick={handleEditProfileClick}
         onAddPlaceClick={handleAddPlaceClick}
         onEditAvatarClick={handleEditAvatarClick}
-//        cards={cards}
         isImagePopupOpen={isImagePopupOpen}
-       // onCardClick={handleCardClick}
       />
       <Footer />
       <AddPlacePopup
