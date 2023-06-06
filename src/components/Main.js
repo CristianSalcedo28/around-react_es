@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
-import Card from "./Cards";
+import Card from "./Card";
 import api from "../utils/Api.js";
 import "../index.css";
 
