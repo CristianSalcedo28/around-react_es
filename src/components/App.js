@@ -6,12 +6,23 @@ import Footer from "./Footer";
 import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
+import api from "../utils/Api.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() =>{
+    api.getUserInfo()
+    .then((res) => {
+        setCurrentUser(res);
+    });
+}, []);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);

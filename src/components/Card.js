@@ -1,6 +1,8 @@
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card({name, link, likes, handleCardClick}) {
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
       <div className="cards__item">

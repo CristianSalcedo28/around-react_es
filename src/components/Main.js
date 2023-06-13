@@ -3,26 +3,28 @@ import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
 import Card from "./Card";
 import api from "../utils/Api.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import "../index.css";
 
 
 function Main(props) {
-    const [userName, setUserName] = useState("");
-    const [userAvatar, setUserAvatar] = useState("");
-    const [userDescription, setUserDescription] = useState("");
-    const [cards, setCards] = useState([]);
-    const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState({});
 
-
-    useEffect(() =>{
-        api.getUserInfo()
-        .then((res) => {
-            setUserName(res.name);
-            setUserAvatar(res.avatar);
-            setUserDescription(res.about);
-        });
-    }, []);
+  const currentUser = React.useContext(CurrentUserContext);
+    // const [userName, setUserName] = useState("");
+    // const [userAvatar, setUserAvatar] = useState("");
+    // const [userDescription, setUserDescription] = useState("");
+  const [cards, setCards] = useState([]);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
+  
+    // useEffect(() =>{
+    //     api.getUserInfo()
+    //     .then((res) => {
+    //         setUserName(res.name);
+    //         setUserAvatar(res.avatar);
+    //         setUserDescription(res.about);
+    //     });
+    // }, []);
 
     useEffect(() =>{
         api.getInitialCards()
@@ -52,7 +54,7 @@ function Main(props) {
             <div className="profile__avatar">
               <img
                 alt="Foto del Usuario"
-                src={userAvatar}
+                src={currentUser.avatar}
                 className="profile__avatar-btn"
               />
               <div
@@ -61,8 +63,8 @@ function Main(props) {
               ></div>
             </div>
             <div className="profile__info">
-              <p className="profile__name">{userName}</p>
-              <p className="profile__profession">{userDescription}</p>
+              <p className="profile__name">{currentUser.name}</p>
+              <p className="profile__profession">{currentUser.about}</p>
             </div>
             <button
               type="button"
