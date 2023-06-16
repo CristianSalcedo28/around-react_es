@@ -45,6 +45,10 @@ function Main(props) {
         }
     }
 
+    function handleCardDelete() {
+      onCardDelete();
+    }
+
     return (
       <div className="page">
         <main className="content">
