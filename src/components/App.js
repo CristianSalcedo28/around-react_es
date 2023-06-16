@@ -16,13 +16,13 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-
-  useEffect(() =>{
-    api.getUserInfo()
-    .then((res) => {
-        setCurrentUser(res);
-    });
-}, []);
+  const [cards, setCards] = useState([]);
+//   useEffect(() =>{
+//     api.getUserInfo()
+//     .then((res) => {
+//         setCurrentUser(res);
+//     });
+// }, []);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -43,6 +43,26 @@ function App() {
     setIsImagePopupOpen(false);
   }
 
+  function handleCardLike(card) {
+    // Verifica una vez más si a esta tarjeta ya le han dado like
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    
+    // Envía una petición a la API y obtén los datos actualizados de la tarjeta
+    api.changeLikeCardStatus(card._id, !isLiked)
+    .then((newCard) => {
+        setCards((state) =>
+         state.map((c) => c._id === card._id ? newCard : c));
+    });
+  }
+  
+  function handleUpdateUser(data) {
+    api.setUserInfo(data)
+    .then((res) => {
+      setCurrentUser(res);
+      handleClosePopup();
+    })
+  }
+  
   return (
     <>
       <Header />
@@ -73,6 +93,7 @@ function App() {
         name=""
         onClose={handleClosePopup}
         isOpen={isEditProfilePopupOpen ? "true" : ""}
+        onUpdateUser={handleUpdateUser}
       />
     </>
   );

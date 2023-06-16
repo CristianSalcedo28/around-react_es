@@ -8,8 +8,9 @@ import "../index.css";
 
 
 function Main(props) {
+  const [currentUser, setCurrentUser] = useState({});
 
-  const currentUser = React.useContext(CurrentUserContext);
+  //const currentUser = React.useContext(CurrentUserContext);
     // const [userName, setUserName] = useState("");
     // const [userAvatar, setUserAvatar] = useState("");
     // const [userDescription, setUserDescription] = useState("");
@@ -17,14 +18,12 @@ function Main(props) {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   
-    // useEffect(() =>{
-    //     api.getUserInfo()
-    //     .then((res) => {
-    //         setUserName(res.name);
-    //         setUserAvatar(res.avatar);
-    //         setUserDescription(res.about);
-    //     });
-    // }, []);
+    useEffect(() =>{
+      api.getUserInfo()
+      .then((res) => {
+          setCurrentUser(res);
+      });
+  }, []);
 
     useEffect(() =>{
         api.getInitialCards()
@@ -34,7 +33,6 @@ function Main(props) {
     }, []);
 
     function handleImagePopup(selectedCard) {
-        console.log(selectedCard)
         setSelectedCard(selectedCard)
         if (isImagePopupOpen === false) {
             setIsImagePopupOpen(true)
