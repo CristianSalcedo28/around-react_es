@@ -3,7 +3,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card({card, handleCardClick, handleCardLike, onCardLike }) {
    const user = React.useContext(CurrentUserContext);
-   const isOwn = card.owner._id === user._id;
+//   const isOwn = card.owner._id === user._id;
    const cardDeleteButtonClassName = `button cards__delete-button ${
     isOwn ? "cards__delete-button_visible" : "cards__delete-button_hidden"
   }`;
