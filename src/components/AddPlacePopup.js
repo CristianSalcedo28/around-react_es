@@ -1,12 +1,31 @@
+import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup(props) {
+function AddPlacePopup({isOpen, onClose, onAddPlace}) {
+
+  const [placeName, setPlaceName] = useState('');
+  const [placeLink, setPlaceLink] = useState('');
+  
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onAddPlace(placeName, placeLink);
+  }
+
+  function onChangeName(evt) {
+    setPlaceName(evt.target.value)
+  }
+
+  function onChangeLink(evt) {
+    setPlaceLink(evt.target.value)
+  }
+
   return (
     <PopupWithForm
-      isOpen={props.isOpen}
-      onClose={props.onClose}
-      title={props.title}
+      isOpen={isOpen}
+      onClose={onClose}
+      title="New Place"
       submitText="Create"
+      onSubmit={handleSubmit}
     >
          <input 
             type="text"
@@ -17,6 +36,7 @@ function AddPlacePopup(props) {
             required
             minLength="2"
             maxLength="30"
+            onChange={onChangeName}
           />
           <span className="title-error popup__item-error "></span>
           <input
@@ -26,6 +46,7 @@ function AddPlacePopup(props) {
             id="image"
             placeholder="Url"
             required
+            onChange={onChangeLink}
           />
           <span className="image-error popup__item-error "></span>
         </PopupWithForm> 

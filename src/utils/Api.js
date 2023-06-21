@@ -51,6 +51,16 @@ class Api {
       return this._useFetch('PATCH', `${this._baseUrl}/users/me/avatar`, avatar);
     }
   
+    //para agregar un like a la tarjeta con el id especificado.
+    addLike(cardId) {
+      return this._useFetch('PUT', `${this._baseUrl}/cards/likes/${cardId}`);
+    }
+  
+    //para eliminar el like a la tarjeta con el id especificado.
+    removeLike(cardId) {
+      return this._useFetch('DELETE', `${this._baseUrl}/cards/likes/${cardId}`);
+    }
+
     changeLikeCardStatus(cardId, isLiked) {
       if (isLiked === true) {
         return this._useFetch('PUT', `${this._baseUrl}/cards/likes/${cardId}`);
@@ -58,15 +68,6 @@ class Api {
         return this._useFetch('DELETE', `${this._baseUrl}/cards/likes/${cardId}`);
       }
     }
-    //para agregar un like a la tarjeta con el id especificado.
-    // addLike(cardId) {
-    //   return this._useFetch('PUT', `${this._baseUrl}/cards/likes/${cardId}`);
-    // }
-  
-    // //para eliminar el like a la tarjeta con el id especificado.
-    // removeLike(cardId) {
-    //   return this._useFetch('DELETE', `${this._baseUrl}/cards/likes/${cardId}`);
-    // }
   }
 
     const api = new Api({

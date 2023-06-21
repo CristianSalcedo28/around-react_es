@@ -15,16 +15,10 @@
 @import url(./blocks/profile/__profession/profile__profession.css);
 
 @import url(./blocks/cards/cards.css);
-@import url(./blocks/cards/__delete-button/cards__delete-button.css);
-@import url(./blocks/cards/__delete-button/__delete-button_hidden/cards__delete-button_hidden.css);
-@import url(./blocks/cards/__delete-button/__delete-button_visible/cards__delete-button_visible.css);
 @import url(./blocks/cards/__image/cards__image.css);
 @import url(./blocks/cards/__text/cards__text.css);
 @import url(./blocks/cards/__item/cards__item.css);
 @import url(./blocks/cards/__name/cards__name.css);
-@import url(./blocks/cards/__like-button/cards__like-button.css);
-@import url(./blocks/cards/__like-button/__like-button_active/cards__like-button_active.css);
-@import url(./blocks/cards/__like-button/__like-button_inactive/cards__like-button_inactive.css);
 
 @import url(./blocks/button-add/button-add.css);
 

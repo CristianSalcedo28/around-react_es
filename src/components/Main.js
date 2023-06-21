@@ -1,38 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import { userContext } from "../contexts/userContext";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
 import Card from "./Card";
-import api from "../utils/Api.js";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import "../index.css";
 
 
 function Main(props) {
-  const [currentUser, setCurrentUser] = useState({});
-
-  //const currentUser = React.useContext(CurrentUserContext);
-    // const [userName, setUserName] = useState("");
-    // const [userAvatar, setUserAvatar] = useState("");
-    // const [userDescription, setUserDescription] = useState("");
-  const [cards, setCards] = useState([]);
+  const currentUser = useContext(userContext);
+//  const [cards, setCards] = useState([]);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
-  
-    useEffect(() =>{
-      api.getUserInfo()
-      .then((res) => {
-          setCurrentUser(res);
-      });
-  }, []);
 
-    useEffect(() =>{
-        api.getInitialCards()
-        .then((res) => {
-            setCards(res);
-        });
-    }, []);
+    // useEffect(() =>{
+    //     api.getInitialCards()
+    //     .then((res) => {
+    //         setCards(res);
+    //     });
+    // }, []);
+
+    // function handleCardLike(card) {
+    //   const isLiked = card.likes.some(i => i._id === currentUser._id);
+    //   api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+    //       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    //   });
+    // }
+
+    // function handleCardDelete(card) {
+    //   api.removeCard(card._id)
+    //   .then(() => {
+    //     setCards(
+    //       cards.filter((item) => {
+    //         return item._id !== card._id;
+    //       })
+    //     );
+    //   });
+    // }
+  
+
 
     function handleImagePopup(selectedCard) {
+        console.log(selectedCard)
         setSelectedCard(selectedCard)
         if (isImagePopupOpen === false) {
             setIsImagePopupOpen(true)
@@ -43,10 +51,6 @@ function Main(props) {
         if (isImagePopupOpen === true) {
             setIsImagePopupOpen(false)
         }
-    }
-
-    function handleCardDelete() {
-      onCardDelete();
     }
 
     return (
@@ -80,14 +84,18 @@ function Main(props) {
             ></button>
           </section>
           <section className="cards">
-            {cards.map((card) => {
+            {props.cards.map((card) => {
               return (
                 <Card
                   key={card._id}
+                  card={card}
+                  owner={card.owner}
                   name={card.name}
                   link={card.link}
                   likes={card.likes.length}
                   handleCardClick={handleImagePopup}
+                  onCardLike={props.onCardLike}
+                  onCardDelete={props.onCardDelete}
                 />
               );
             })}

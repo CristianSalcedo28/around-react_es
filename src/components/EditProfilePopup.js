@@ -1,61 +1,63 @@
+import React, { useState, useEffect, useContext } from "react";
 import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import React, { useState } from "react";
+import { userContext } from "../contexts/userContext";
 
+function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
+  const currentUser = useContext(userContext);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
-function EditProfilePopup(props) {
-     const [name, setName] = useState();
-     const [description, setDescription] = useState();
-//  const currentUser = React.useContext(CurrentUserContext);
+  useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser]);
 
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleDescriptionChange(e) {
-    setDescription(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    props.onUpdateUser({
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onUpdateUser({
       name,
       about: description,
     });
   }
 
+  function handleChangeName(evt){
+    setName(evt.target.value)
+  }
+
+  function handleChangeDescription(evt){
+    setDescription(evt.target.value)
+  }
+
   return (
     <PopupWithForm
-      isOpen={props.isOpen}
-      onClose={props.onClose}
-      title={props.title}
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Edit Profile"
       submitText="Save"
       onSubmit={handleSubmit}
     >
     <input
             type="text"
-            onChange={handleNameChange}
             id="name"
             name="user"
             className="popup__item popup__item_name"
-            value={name}
-            placeholder="Name"
+            value={name || ''} 
             minLength="2"
             maxLength="40"
             required
+            onChange={handleChangeName}
           />
           <span className="name-error popup__item-error "></span>
           <input
             type="text"
-            onChange={handleDescriptionChange}
             id="profession"
             name="profession"
             className="popup__item popup__item_profession"
-            value={description}
-            placeholder="About Me"
+            value={description || ''}
             minLength="2"
             maxLength="200"
             required
+            onChange={handleChangeDescription}
           />
           <span className="profession-error popup__item-error "></span>    
     </PopupWithForm>

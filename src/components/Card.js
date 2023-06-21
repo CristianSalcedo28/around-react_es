@@ -1,51 +1,37 @@
-import React from "react";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import React, { useContext } from "react";
+import { userContext } from "../contexts/userContext";
 
-function Card({card, handleCardClick, handleCardLike, onCardLike }) {
-   const user = React.useContext(CurrentUserContext);
-//   const isOwn = card.owner._id === user._id;
-   const cardDeleteButtonClassName = `button cards__delete-button ${
-    isOwn ? "cards__delete-button_visible" : "cards__delete-button_hidden"
-  }`;
-  const isLiked = card.likes.some((item) => item._id === user._id);
-   const cardLikeButtonClassName = `button cards__like-button ${
-    isLiked ? "cards__like-button_active" : "cards__like-button_inactive"
+function Card({card, name, link, likes, handleCardClick, onCardLike, onCardDelete}) {
+  const currentUser = useContext(userContext);
+  const isOwn = card.owner._id === currentUser._id;
+  const cardDeleteButtonClassName = `${isOwn ? "button-trash" : ""}`;
+  const isLiked = card.likes.some((item) => item._id === currentUser._id);
+  const cardLikeButtonClassName = `button-like ${
+    isLiked ? "button-like-active" : ""
   }`;
 
-  // function handleCardLike() {
-  //   onCardLike(card);
-  // }
-
-  function handleLikeClick() {
-    onCardLike(card);
+  function handleCardLike() {
+    onCardLike(card)
   }
 
-  function handleDeleteClick() {
-    onCardDelete(card);
+  function handleCardDelete() {
+    onCardDelete(card)
   }
-  
+
   return (
       <div className="cards__item">
         <img 
-          onClick={() => handleCardClick()}
-          src={card.link}
-          alt={card.name}
+          onClick={() => handleCardClick({name, link})}
+          src={link}
+          alt=""
           className="cards__image"
         />
-        <button
-         type="button"
-         className={cardDeleteButtonClassName}
-         onClick={() => card.handleCardDelete(card)}
-         ></button>
+        <button type="button" className={cardDeleteButtonClassName} onClick={handleCardDelete}></button>
         <div className="cards__text">
-            <h4 className="cards__name">{card.name}</h4>
+            <h4 className="cards__name">{name}</h4>
             <div className="cards__like">
-              <button
-               type="button"
-               className={cardLikeButtonClassName}
-               onClick={() => handleCardLike()}
-               ></button>
-              <span className="likes__counter">{card.likes}</span>
+              <button type="button" className={cardLikeButtonClassName} onClick={handleCardLike}></button>
+              <span className="likes__counter">{likes}</span>
             </div>
         </div>
       </div>
