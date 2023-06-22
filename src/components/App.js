@@ -9,7 +9,6 @@ import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 
-
 function App() {
   const [currentUser, setCurrentUser] = useState({}); 
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -17,7 +16,6 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [cards, setCards] = useState([]);
-
 
   useEffect(() =>{
     api.getInitialCards()
@@ -51,8 +49,8 @@ function App() {
     });
   }
 
-  function handleUpdateUser(user) {
-    api.setUserInfo(user.name, user.about)
+  function handleUpdateUser(name, about) {
+    api.setUserInfo(name, about)
     .then((data) => {
       setCurrentUser(data);
       handleClosePopup();
@@ -60,7 +58,7 @@ function App() {
   }
 
   function handleUpdateAvatar(avatar) {
-    api.setUserAvatar(avatar)
+    api.setUserAvatar({avatar:avatar})
     .then((data) => {
       setCurrentUser(data);
       handleClosePopup();
@@ -68,8 +66,7 @@ function App() {
   }
 
   function handleAddPlace(name, link) {
-    api.addCard(name, link)
-    .then((data) => {
+    api.addCard({name, link}).then((data) => {
       setCards([data, ...cards]);
       handleClosePopup();
     });

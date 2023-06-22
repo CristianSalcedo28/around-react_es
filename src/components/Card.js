@@ -19,14 +19,16 @@ function Card({card, name, link, likes, handleCardClick, onCardLike, onCardDelet
   }
 
   return (
+    <div className="template__card">
       <div className="cards__item">
+        <button type="button" className={cardDeleteButtonClassName} onClick={handleCardDelete}></button>
         <img 
           onClick={() => handleCardClick({name, link})}
           src={link}
           alt=""
           className="cards__image"
         />
-        <button type="button" className={cardDeleteButtonClassName} onClick={handleCardDelete}></button>
+        {/* <button type="button" className={cardDeleteButtonClassName} onClick={handleCardDelete}></button> */}
         <div className="cards__text">
             <h4 className="cards__name">{name}</h4>
             <div className="cards__like">
@@ -35,6 +37,7 @@ function Card({card, name, link, likes, handleCardClick, onCardLike, onCardDelet
             </div>
         </div>
       </div>
+    </div>
 )
 }
 

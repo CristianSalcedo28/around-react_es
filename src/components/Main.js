@@ -8,50 +8,21 @@ import "../index.css";
 
 function Main(props) {
   const currentUser = useContext(userContext);
-//  const [cards, setCards] = useState([]);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
 
-    // useEffect(() =>{
-    //     api.getInitialCards()
-    //     .then((res) => {
-    //         setCards(res);
-    //     });
-    // }, []);
-
-    // function handleCardLike(card) {
-    //   const isLiked = card.likes.some(i => i._id === currentUser._id);
-    //   api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-    //       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    //   });
-    // }
-
-    // function handleCardDelete(card) {
-    //   api.removeCard(card._id)
-    //   .then(() => {
-    //     setCards(
-    //       cards.filter((item) => {
-    //         return item._id !== card._id;
-    //       })
-    //     );
-    //   });
-    // }
-  
-
-
-    function handleImagePopup(selectedCard) {
-        console.log(selectedCard)
-        setSelectedCard(selectedCard)
-        if (isImagePopupOpen === false) {
-            setIsImagePopupOpen(true)
-        }
+  function handleImagePopup(selectedCard) {
+    setSelectedCard(selectedCard)
+    if (isImagePopupOpen === false) {
+      setIsImagePopupOpen(true)
     }
-    function handleClosePopup() {
-        setSelectedCard({})
-        if (isImagePopupOpen === true) {
-            setIsImagePopupOpen(false)
-        }
+  }
+  function handleClosePopup() {
+    setSelectedCard({})
+    if (isImagePopupOpen === true) {
+      setIsImagePopupOpen(false)
     }
+  }
 
     return (
       <div className="page">
@@ -109,4 +80,5 @@ function Main(props) {
       </div>
     );
 };
+
 export default Main;
