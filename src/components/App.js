@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { userContext } from "../contexts/userContext";
-import api from "../utils/Api";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import api from "../utils/api";
 import "../index.css";
 import Header from "./Header";
 import Main from "./Main";
@@ -92,7 +92,7 @@ function App() {
   }
 
   return (
-    <userContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main
         onEditProfileClick={handleEditProfileClick}
@@ -120,7 +120,7 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onUpdateUser={handleUpdateUser}
       />
-    </userContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 

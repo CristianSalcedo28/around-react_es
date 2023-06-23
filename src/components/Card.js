@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { userContext } from "../contexts/userContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card({card, name, link, likes, handleCardClick, onCardLike, onCardDelete}) {
-  const currentUser = useContext(userContext);
+  const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
   const cardDeleteButtonClassName = `button-trash ${isOwn ? "button-trash_visible" : "button-trash_hidden"}`;
   const isLiked = card.likes.some((item) => item._id === currentUser._id);

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { userContext } from "../contexts/userContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
 import Card from "./Card";
@@ -7,7 +7,7 @@ import "../index.css";
 
 
 function Main(props) {
-  const currentUser = useContext(userContext);
+  const currentUser = useContext(CurrentUserContext);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
 
