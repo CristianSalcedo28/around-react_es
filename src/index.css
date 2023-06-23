@@ -35,6 +35,8 @@
 @import url(./blocks/likes__counter/likes__counter.css);
 
 @import url(./blocks/button-trash/button-trash.css);
+@import url(./blocks/button-trash/button-trash_visible/button-trash_visilble.css);
+@import url(./blocks/button-trash/button-trash_hidden/button-trash_hidden.css);
 
 @import url(./blocks/footer/footer.css);
 
